@@ -9,7 +9,9 @@
 [badge_modrinth]: https://img.shields.io/modrinth/dt/jjuIRIVr?color=5da545&label=Modrinth&style=for-the-badge&logo=modrinth
 [modrinth]: https://modrinth.com/mod/mekanism_extra
 
-**[我的CurseForge链接](https://www.curseforge.com/minecraft/mc-mods/mekanism-extras)** **[我的Modrinth链接](https://modrinth.com/mod/mekanism_extra)**
+**[My CurseForge Link](https://www.curseforge.com/minecraft/mc-mods/mekanism-extras)**
+
+**[My Modrinth Link](https://modrinth.com/mod/mekanism_extra)**
 
 **Ported [Mekanism Evolution](https://github.com/Pocky-l/Mekanism-Evolution) to a higher version and added some other things**
 
