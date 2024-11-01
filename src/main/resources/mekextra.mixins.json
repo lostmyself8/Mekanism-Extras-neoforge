@@ -7,7 +7,8 @@
   "mixins": [
     "MekExtrasRenderer",
     "MixinBinInventorySlot",
-    "MixinBlock"
+    "MixinBlock",
+    "MixinLogisticalTransporterBase"
   ],
   "client": [
   ],

@@ -1,11 +1,11 @@
 package com.jerry.mekextras.common.tile.transmitter;
 
-import com.jerry.mekextras.common.content.network.transmitter.ExtraLogisticalTransporterBase;
 import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.api.providers.IBlockProvider;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.capabilities.item.CursedTransporterItemHandler;
 import mekanism.common.capabilities.resolver.ICapabilityResolver;
+import mekanism.common.content.network.transmitter.LogisticalTransporterBase;
 import mekanism.common.content.transporter.TransporterStack;
 import mekanism.common.lib.transmitter.ConnectionType;
 import mekanism.common.util.TransporterUtils;
@@ -30,11 +30,11 @@ public abstract class ExtraTileEntityLogisticalTransporterBase extends ExtraTile
     }
 
     @Override
-    protected abstract ExtraLogisticalTransporterBase createTransmitter(IBlockProvider blockProvider);
+    protected abstract LogisticalTransporterBase createTransmitter(IBlockProvider blockProvider);
 
     @Override
-    public ExtraLogisticalTransporterBase getTransmitter() {
-        return (ExtraLogisticalTransporterBase) super.getTransmitter();
+    public LogisticalTransporterBase getTransmitter() {
+        return (LogisticalTransporterBase) super.getTransmitter();
     }
 
     public static void tickClient(Level level, BlockPos pos, BlockState state, ExtraTileEntityLogisticalTransporterBase transmitter) {
@@ -51,7 +51,7 @@ public abstract class ExtraTileEntityLogisticalTransporterBase extends ExtraTile
     public void blockRemoved() {
         super.blockRemoved();
         if (!isRemote()) {
-            ExtraLogisticalTransporterBase transporter = getTransmitter();
+            LogisticalTransporterBase transporter = getTransmitter();
             if (!transporter.isUpgrading()) {
                 //If the transporter is not currently being upgraded, drop the contents
                 for (TransporterStack stack : transporter.getTransit()) {
@@ -101,7 +101,7 @@ public abstract class ExtraTileEntityLogisticalTransporterBase extends ExtraTile
             }
             IItemHandler cachedCapability = handlers.get(side);
             if (cachedCapability == null) {
-                ExtraLogisticalTransporterBase transporter = getTransmitter();
+                LogisticalTransporterBase transporter = getTransmitter();
                 //Note: We check here whether it exposes the cap rather than in the cap itself as we invalidate the cached cap whenever this changes
                 if (transporter.exposesInsertCap(side)) {
                     CursedTransporterItemHandler cached = cursedHandlers.get(side);

@@ -1,6 +1,5 @@
 package com.jerry.mekextras.client.render.transmitter;
 
-import com.jerry.mekextras.common.content.network.transmitter.ExtraLogisticalTransporterBase;
 import com.jerry.mekextras.common.tier.TPTier;
 import com.jerry.mekextras.common.tile.transmitter.ExtraTileEntityLogisticalTransporterBase;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -11,16 +10,14 @@ import mekanism.client.render.MekanismRenderer;
 import mekanism.client.render.transmitter.RenderTransmitterBase;
 import mekanism.common.base.ProfilerConstants;
 import mekanism.common.config.MekanismConfig;
-import mekanism.common.content.network.transmitter.DiversionTransporter;
+import mekanism.common.content.network.transmitter.LogisticalTransporterBase;
 import mekanism.common.content.transporter.TransporterStack;
 import mekanism.common.lib.inventory.HashedItem;
-import mekanism.common.util.EnumUtils;
 import mekanism.common.util.TransporterUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.profiling.ProfilerFiller;
@@ -37,13 +34,6 @@ import java.util.*;
 public class ExtraRenderLogisticalTransporter extends RenderTransmitterBase<ExtraTileEntityLogisticalTransporterBase> {
 
     private static final Map<Direction, MekanismRenderer.Model3D> cachedOverlays = new EnumMap<>(Direction.class);
-    private static final int DIVERSION_OVERLAY_ARGB = MekanismRenderer.getColorARGB(255, 255, 255, 0.8F);
-    @Nullable
-    private static TextureAtlasSprite gunpowderIcon;
-    @Nullable
-    private static TextureAtlasSprite torchOffIcon;
-    @Nullable
-    private static TextureAtlasSprite torchOnIcon;
     private final ModelTransporterBox modelBox;
     private final ExtraRenderLogisticalTransporter.LazyItemRenderer itemRenderer = new ExtraRenderLogisticalTransporter.LazyItemRenderer();
 
@@ -54,7 +44,7 @@ public class ExtraRenderLogisticalTransporter extends RenderTransmitterBase<Extr
 
     @Override
     protected void render(@NotNull ExtraTileEntityLogisticalTransporterBase tile, float partialTick, @NotNull PoseStack matrix, @NotNull MultiBufferSource renderer, int light, int overlayLight, @NotNull ProfilerFiller profiler) {
-        ExtraLogisticalTransporterBase transporter = tile.getTransmitter();
+        LogisticalTransporterBase transporter = tile.getTransmitter();
         BlockPos pos = tile.getBlockPos();
         if (!MekanismConfig.client.opaqueTransmitters.get()) {
             Collection<TransporterStack> inTransit = transporter.getTransit();
@@ -98,21 +88,6 @@ public class ExtraRenderLogisticalTransporter extends RenderTransmitterBase<Extr
             }
         }
         return reducedTransit;
-    }
-
-    private MekanismRenderer.Model3D getOverlayModel(DiversionTransporter transporter, Direction side) {
-        MekanismRenderer.Model3D model = cachedOverlays.computeIfAbsent(side, face -> {
-            MekanismRenderer.Model3D model3D = new MekanismRenderer.Model3D().prepSingleFaceModelSize(face);
-            for (Direction direction : EnumUtils.DIRECTIONS) {
-                model3D.setSideRender(direction, direction == face);
-            }
-            return model3D;
-        });
-        return model.setTexture(side, switch (transporter.modes[side.ordinal()]) {
-            case DISABLED -> gunpowderIcon;
-            case HIGH -> torchOnIcon;
-            case LOW -> torchOffIcon;
-        });
     }
 
     private static class TransportInformation {
@@ -159,10 +134,10 @@ public class ExtraRenderLogisticalTransporter extends RenderTransmitterBase<Extr
             if (entityItem == null) {
                 entityItem = new ItemEntity(EntityType.ITEM, world);
             } else {
-//                entityItem.setLevel(world);
+                entityItem.setLevel(world);
             }
             entityItem.setPos(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-//            entityItem.age = 0;
+            entityItem.age = 0;
         }
 
         private void renderAsStack(PoseStack matrix, MultiBufferSource buffer, ItemStack stack, int light) {
