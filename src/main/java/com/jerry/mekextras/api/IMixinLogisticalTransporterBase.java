@@ -1,4 +1,4 @@
-package com.jerry.mekextras.api.mixinp;
+package com.jerry.mekextras.api;
 
 import mekanism.common.content.transporter.TransporterStack;
 import net.minecraft.core.BlockPos;

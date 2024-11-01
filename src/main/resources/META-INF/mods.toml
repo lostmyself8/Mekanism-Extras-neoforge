@@ -27,4 +27,4 @@ license = "${mod_license}"
     side = "BOTH"
 
 [[accessTransformers]]
-file="META-INF/accesstransformer.cfg"
+    file="META-INF/accesstransformer.cfg"
