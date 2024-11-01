@@ -1,6 +1,6 @@
-package com.jerry.mekextras.common.api;
+package com.jerry.mekextras.api;
 
-import com.jerry.mekextras.common.api.text.APIExtraLang;
+import com.jerry.mekextras.api.text.APIExtraLang;
 import mekanism.api.NBTConstants;
 import mekanism.api.Upgrade;
 import mekanism.api.annotations.NothingNullByDefault;

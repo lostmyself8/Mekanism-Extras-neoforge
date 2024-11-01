@@ -1,4 +1,4 @@
-package com.jerry.mekextras.common.api.tier;
+package com.jerry.mekextras.api.tier;
 
 import mekanism.api.SupportsColorMap;
 import mekanism.api.math.MathUtils;

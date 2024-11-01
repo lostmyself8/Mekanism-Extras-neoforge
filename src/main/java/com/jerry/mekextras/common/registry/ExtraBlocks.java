@@ -1,7 +1,7 @@
 package com.jerry.mekextras.common.registry;
 
 import com.jerry.mekextras.MekanismExtras;
-import com.jerry.mekextras.common.api.tier.IAdvanceTier;
+import com.jerry.mekextras.api.tier.IAdvanceTier;
 import com.jerry.mekextras.common.block.BlockLargeCapRadioactiveWasteBarrel;
 import com.jerry.mekextras.common.block.attribute.ExtraAttributeTier;
 import com.jerry.mekextras.common.block.basic.ExtraBlockBin;

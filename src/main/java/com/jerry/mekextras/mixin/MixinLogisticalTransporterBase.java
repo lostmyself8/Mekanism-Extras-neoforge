@@ -1,6 +1,6 @@
 package com.jerry.mekextras.mixin;
 
-import com.jerry.mekextras.common.api.mixinp.IMixinLogisticalTransporterBase;
+import com.jerry.mekextras.api.mixinp.IMixinLogisticalTransporterBase;
 import mekanism.common.content.network.InventoryNetwork;
 import mekanism.common.content.network.transmitter.LogisticalTransporterBase;
 import mekanism.common.content.network.transmitter.Transmitter;

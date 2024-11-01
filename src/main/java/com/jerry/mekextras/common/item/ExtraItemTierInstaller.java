@@ -1,6 +1,6 @@
 package com.jerry.mekextras.common.item;
 
-import com.jerry.mekextras.common.api.tier.AdvanceTier;
+import com.jerry.mekextras.api.tier.AdvanceTier;
 import com.jerry.mekextras.common.block.attribute.ExtraAttribute;
 import com.jerry.mekextras.common.block.attribute.ExtraAttributeUpgradeable;
 import mekanism.api.text.TextComponentUtil;

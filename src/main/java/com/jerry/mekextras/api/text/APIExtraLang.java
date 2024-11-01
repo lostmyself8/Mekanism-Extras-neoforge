@@ -1,4 +1,4 @@
-package com.jerry.mekextras.common.api.text;
+package com.jerry.mekextras.api.text;
 
 import com.jerry.mekextras.MekanismExtras;
 import mekanism.api.annotations.NothingNullByDefault;

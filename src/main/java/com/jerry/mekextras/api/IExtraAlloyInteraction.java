@@ -1,6 +1,6 @@
-package com.jerry.mekextras.common.api;
+package com.jerry.mekextras.api;
 
-import com.jerry.mekextras.common.api.tier.ExtraAlloyTier;
+import com.jerry.mekextras.api.tier.ExtraAlloyTier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;

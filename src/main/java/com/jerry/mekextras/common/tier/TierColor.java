@@ -1,6 +1,6 @@
 package com.jerry.mekextras.common.tier;
 
-import com.jerry.mekextras.common.api.tier.IAdvanceTier;
+import com.jerry.mekextras.api.tier.IAdvanceTier;
 
 public class TierColor {
     private static final int[] cosmicColor = new int[]{255, 255, 255};

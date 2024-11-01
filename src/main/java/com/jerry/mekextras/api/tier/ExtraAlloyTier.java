@@ -1,4 +1,4 @@
-package com.jerry.mekextras.common.api.tier;
+package com.jerry.mekextras.api.tier;
 
 public enum ExtraAlloyTier implements IAdvanceTier{
     THERMONUCLEAR("thermonuclear", AdvanceTier.SUPREME),

@@ -1,7 +1,7 @@
 package com.jerry.mekextras.client.render.tileentity;
 
 import com.jerry.mekextras.client.model.ColorModelEnergyCore;
-import com.jerry.mekextras.common.api.tier.AdvanceTier;
+import com.jerry.mekextras.api.tier.AdvanceTier;
 import com.jerry.mekextras.common.tier.TierColor;
 import com.jerry.mekextras.common.tile.ExtraTileEntityEnergyCube;
 import com.mojang.blaze3d.vertex.PoseStack;
