@@ -1,5 +1,6 @@
 package com.jerry.mekextras;
 
+import com.jerry.mekextras.common.ExtraLang;
 import com.jerry.mekextras.common.capabilities.ExtraCapabilities;
 import com.jerry.mekextras.common.command.builders.ExtraBuilders;
 import com.jerry.mekextras.common.config.ExtraConfig;
@@ -9,14 +10,10 @@ import com.jerry.mekextras.common.content.matrix.ReinforcedMatrixValidator;
 import com.jerry.mekextras.common.network.ExtraPacketHandler;
 import com.jerry.mekextras.common.registry.*;
 import com.mojang.logging.LogUtils;
-import mekanism.common.Mekanism;
-import mekanism.common.MekanismLang;
 import mekanism.common.command.builders.BuildCommand;
-import mekanism.common.command.builders.Builders;
 import mekanism.common.lib.Version;
 import mekanism.common.lib.multiblock.MultiblockCache;
 import mekanism.common.lib.multiblock.MultiblockManager;
-import mekanism.common.network.PacketHandler;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -35,7 +32,7 @@ public class MekanismExtras {
     private final ExtraPacketHandler extraPacketHandler;
     public static MekanismExtras instance;
     public final Version versionNumber;
-    public static final MultiblockManager<ReinforcedMatrixMultiblockData> matrixManager = new MultiblockManager<>("inductionMatrix", MultiblockCache::new, ReinforcedMatrixValidator::new);
+    public static final MultiblockManager<ReinforcedMatrixMultiblockData> matrixManager = new MultiblockManager<>("reinforcedMatrix", MultiblockCache::new, ReinforcedMatrixValidator::new);
     private static final Logger LOGGER = LogUtils.getLogger();
     public MekanismExtras(ModContainer modContainer, IEventBus modEventBus) {
         instance = this;
@@ -68,7 +65,7 @@ public class MekanismExtras {
     }
 
     private void registerCommands(RegisterCommandsEvent event) {
-        BuildCommand.register("reinforcedMatrix", MekanismLang.MATRIX, new ExtraBuilders.ReinforcedMatrixBuilder());
+        BuildCommand.register("reinforced_matrix", ExtraLang.REINFORCED_MATRIX, new ExtraBuilders.ReinforcedMatrixBuilder());
     }
 
     private void onConfigLoad(ModConfigEvent configEvent) {
