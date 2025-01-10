@@ -20,7 +20,7 @@ import java.util.Map;
 
 @NothingNullByDefault
 public enum ExtraUpgrade implements IHasTranslationKey {
-    IONIC_MEMBRANE("ionic_membrane", APIExtraLang.UPGRADE_IONIC_MEMBRANE, APIExtraLang.UPGRADE_IONIC_MEMBRANE_DESCRIPTION, 8, EnumColor.RED);
+    IONIC_MEMBRANE("ionic_membrane", APIExtraLang.UPGRADE_IONIC_MEMBRANE, APIExtraLang.UPGRADE_IONIC_MEMBRANE_DESCRIPTION, 1, EnumColor.WHITE);
 
     private static final ExtraUpgrade[] UPGRADES = values();
 
