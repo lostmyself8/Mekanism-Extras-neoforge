@@ -1,7 +1,6 @@
 package com.jerry.mekextras.common.registry;
 
 import com.jerry.mekextras.MekanismExtras;
-import com.jerry.mekextras.common.ExtraChemicalConstants;
 import mekanism.api.chemical.gas.Gas;
 import mekanism.common.registration.impl.DeferredChemical;
 import mekanism.common.registration.impl.GasDeferredRegister;
