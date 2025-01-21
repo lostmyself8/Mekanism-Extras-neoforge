@@ -2,6 +2,7 @@ package com.jerry.mekextras.common.registry;
 
 import com.jerry.mekextras.common.block.attribute.ExtraAttributeTier;
 import com.jerry.mekextras.common.block.attribute.ExtraAttributeUpgradeable;
+import com.jerry.mekextras.common.config.ExtraConfig;
 import com.jerry.mekextras.common.tier.*;
 import com.jerry.mekextras.common.tile.*;
 import com.jerry.mekextras.common.tile.transmitter.ExtraTileEntityTransmitter;
@@ -20,7 +21,6 @@ import mekanism.api.text.ILangEntry;
 import mekanism.api.tier.ITier;
 import mekanism.common.MekanismLang;
 import mekanism.common.block.attribute.*;
-import mekanism.common.config.MekanismConfig;
 import mekanism.common.content.blocktype.BlockShapes;
 import mekanism.common.content.blocktype.BlockTypeTile;
 import mekanism.common.content.blocktype.Machine;
@@ -37,7 +37,7 @@ public class ExtraBlockTypes {
     public static final Machine<TileEntityAdvanceElectricPump> ADVANCE_ELECTRIC_PUMP = Machine.MachineBuilder
             .createMachine(() -> ExtraTileEntityTypes.ADVANCE_ELECTRIC_PUMP, MekanismLang.DESCRIPTION_ELECTRIC_PUMP)
             .withGui(() -> ExtraContainerTypes.ADVANCE_ELECTRIC_PUMP)
-            .withEnergyConfig(MekanismConfig.usage.electricPump, MekanismConfig.storage.electricPump)
+            .withEnergyConfig(ExtraConfig.extraUsage.advanceElectricPump, ExtraConfig.extraStorage.advanceElectricPump)
             .withSupportedUpgrades(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.FILTER)
             .withCustomShape(BlockShapes.ELECTRIC_PUMP)
             .withComputerSupport("electricPump")
