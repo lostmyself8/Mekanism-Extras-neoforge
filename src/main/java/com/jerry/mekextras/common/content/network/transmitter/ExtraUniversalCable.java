@@ -1,6 +1,6 @@
 package com.jerry.mekextras.common.content.network.transmitter;
 
-import com.jerry.mekextras.common.tier.CTier;
+import com.jerry.mekextras.common.tier.transmitter.CTier;
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
 import mekanism.api.NBTConstants;
