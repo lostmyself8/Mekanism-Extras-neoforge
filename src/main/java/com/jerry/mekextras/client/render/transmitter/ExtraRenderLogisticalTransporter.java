@@ -1,6 +1,6 @@
 package com.jerry.mekextras.client.render.transmitter;
 
-import com.jerry.mekextras.common.tier.TPTier;
+import com.jerry.mekextras.common.tier.transmitter.TPTier;
 import com.jerry.mekextras.common.tile.transmitter.ExtraTileEntityLogisticalTransporterBase;
 import com.mojang.blaze3d.vertex.PoseStack;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;

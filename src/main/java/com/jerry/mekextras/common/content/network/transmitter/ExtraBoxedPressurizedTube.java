@@ -1,7 +1,7 @@
 package com.jerry.mekextras.common.content.network.transmitter;
 
 import com.jerry.mekextras.common.tile.transmitter.ExtraTileEntityTransmitter;
-import com.jerry.mekextras.common.tier.TTier;
+import com.jerry.mekextras.common.tier.transmitter.TTier;
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
 import mekanism.api.chemical.*;

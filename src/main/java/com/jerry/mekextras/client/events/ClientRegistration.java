@@ -13,7 +13,7 @@ import com.jerry.mekextras.client.render.tileentity.ExtraRenderEnergyCube;
 import com.jerry.mekextras.client.render.tileentity.ExtraRenderFluidTank;
 import com.jerry.mekextras.client.render.transmitter.*;
 import com.jerry.mekextras.common.block.attribute.ExtraAttribute;
-import com.jerry.mekextras.common.tier.TierColor;
+import com.jerry.mekextras.common.tier.transmitter.TierColor;
 import com.jerry.mekextras.common.tier.ECTier;
 import com.jerry.mekextras.common.item.block.ExtraItemBlockEnergyCube;
 import com.jerry.mekextras.common.item.block.machine.ExtraItemBlockFluidTank;
