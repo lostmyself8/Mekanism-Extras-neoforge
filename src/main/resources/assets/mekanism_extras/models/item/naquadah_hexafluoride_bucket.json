@@ -1,0 +1,5 @@
+{
+  "parent": "neoforge:item/bucket",
+  "fluid": "mekanism_extras:naquadah_hexafluoride",
+  "loader": "neoforge:fluid_container"
+}
