@@ -12,7 +12,7 @@ import com.jerry.mekextras.common.block.attribute.ExtraAttributeTier;
 import com.jerry.mekextras.common.block.basic.ExtraBlockBin;
 import com.jerry.mekextras.common.block.basic.ExtraBlockFluidTank;
 import com.jerry.mekextras.common.block.basic.ExtraBlockResource;
-import com.jerry.mekextras.common.block.prefab.BlockExtraFactoryMachine;
+import com.jerry.mekextras.common.block.prefab.BlockExtraFactoryMachine.BlockExtraFactory;
 import com.jerry.mekextras.common.content.blocktype.ExtraFactory;
 import com.jerry.mekextras.common.item.block.*;
 import com.jerry.mekextras.common.item.block.machine.ItemBlockExtraFactory;
@@ -40,6 +40,7 @@ import com.jerry.mekextras.common.tile.multiblock.TileEntityReinforcedInductionP
 import com.jerry.mekextras.common.tile.multiblock.ExtraTileEntityInductionCell;
 import com.jerry.mekextras.common.tile.multiblock.ExtraTileEntityInductionProvider;
 import com.jerry.mekextras.common.util.ExtraEnumUtils;
+import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
 import mekanism.common.attachments.containers.ContainerType;
 import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
 import mekanism.common.attachments.containers.fluid.FluidTanksBuilder;
@@ -91,13 +92,19 @@ public class ExtraBlocks {
     public static final Map<IResource, BlockRegistryObject<?, ?>> PROCESSED_RESOURCE_BLOCKS = new LinkedHashMap<>();
     public static final Map<OreType, OreBlockType> ORES = new LinkedHashMap<>();
 
-    private static final Table<ExtraFactoryTier, FactoryType, BlockRegistryObject<BlockExtraFactoryMachine.BlockExtraFactory<?>, ItemBlockExtraFactory>> FACTORIES = HashBasedTable.create();
+    private static final Table<ExtraFactoryTier, FactoryType, BlockRegistryObject<BlockExtraFactory<?>, ItemBlockExtraFactory>> FACTORIES = HashBasedTable.create();
 
     static {
         // factories
-        for (ExtraFactoryTier tier : ExtraEnumUtils.ADVANCED_FACTORY_TIERS) {
+        for (ExtraFactoryTier tier : ExtraEnumUtils.EXTRA_FACTORY_TIERS) {
             for (FactoryType type : EnumUtils.FACTORY_TYPES) {
-                FACTORIES.put(tier, type, registerFactory(ExtraBlockTypes.getAdvancedFactory(tier, type)));
+                if (MekanismExtras.hooks.evolvedMekanism.isLoaded()) {
+                    if (type != EMFactoryType.ALLOYING) {
+                        FACTORIES.put(tier, type, registerFactory(ExtraBlockTypes.getAdvancedFactory(tier, type)));
+                    }
+                } else {
+                    FACTORIES.put(tier, type, registerFactory(ExtraBlockTypes.getAdvancedFactory(tier, type)));
+                }
             }
         }
         // resource blocks
@@ -323,9 +330,9 @@ public class ExtraBlocks {
         return registerTieredBlock(tier, "_radioactive_waste_barrel", () -> new BlockLargeCapRadioactiveWasteBarrel(type), ItemBlockLargeCapRadioactiveWasteBarrel::new);
     }
 
-    private static <TILE extends TileEntityExtraFactory<?>> BlockRegistryObject<BlockExtraFactoryMachine.BlockExtraFactory<?>, ItemBlockExtraFactory> registerFactory(ExtraFactory<TILE> type) {
+    private static <TILE extends TileEntityExtraFactory<?>> BlockRegistryObject<BlockExtraFactory<?>, ItemBlockExtraFactory> registerFactory(ExtraFactory<TILE> type) {
         ExtraFactoryTier tier = (ExtraFactoryTier) type.get(ExtraAttributeTier.class).tier();
-        BlockRegistryObject<BlockExtraFactoryMachine.BlockExtraFactory<?>, ItemBlockExtraFactory> factory = registerTieredBlock(tier, "_" + type.getFactoryType().getRegistryNameComponent() + "_factory", () -> new BlockExtraFactoryMachine.BlockExtraFactory<>(type), ItemBlockExtraFactory::new);
+        BlockRegistryObject<BlockExtraFactory<?>, ItemBlockExtraFactory> factory = registerTieredBlock(tier, "_" + type.getFactoryType().getRegistryNameComponent() + "_factory", () -> new BlockExtraFactory<>(type), ItemBlockExtraFactory::new);
         factory.forItemHolder(holder -> {
             int processes = tier.processes;
             Predicate<ItemStack> recipeInputPredicate = switch (type.getFactoryType()) {
@@ -397,12 +404,12 @@ public class ExtraBlocks {
      * @param type - recipe type to add to the Factory
      * @return factory with defined tier and recipe type
      */
-    public static BlockRegistryObject<BlockExtraFactoryMachine.BlockExtraFactory<?>, ItemBlockExtraFactory> getExtraFactory(@NotNull ExtraFactoryTier tier, @NotNull FactoryType type) {
+    public static BlockRegistryObject<BlockExtraFactory<?>, ItemBlockExtraFactory> getExtraFactory(@NotNull ExtraFactoryTier tier, @NotNull FactoryType type) {
         return FACTORIES.get(tier, type);
     }
 
     @SuppressWarnings("unchecked")
-    public static BlockRegistryObject<BlockExtraFactoryMachine.BlockExtraFactory<?>, ItemBlockExtraFactory>[] getExtraFactoryBlocks() {
+    public static BlockRegistryObject<BlockExtraFactory<?>, ItemBlockExtraFactory>[] getExtraFactoryBlocks() {
         return FACTORIES.values().toArray(new BlockRegistryObject[0]);
     }
 

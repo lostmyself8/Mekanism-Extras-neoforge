@@ -2,13 +2,16 @@ package com.jerry.mekextras.common.registries;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
+import com.jerry.mekextras.MekanismExtras;
 import com.jerry.mekextras.api.ExtraUpgrade;
 import com.jerry.mekextras.common.block.attribute.ExtraAttributeUpgradeSupport;
 import com.jerry.mekextras.common.block.attribute.ExtraAttributeTier;
 import com.jerry.mekextras.common.block.attribute.ExtraAttributeUpgradeable;
 import com.jerry.mekextras.common.config.ExtraConfig;
 import com.jerry.mekextras.common.content.blocktype.ExtraFactory;
-import com.jerry.mekextras.common.content.blocktype.ExtraMachine;
+import com.jerry.mekextras.common.content.blocktype.ExtraFactory.ExtraFactoryBuilder;
+import com.jerry.mekextras.common.content.blocktype.ExtraMachine.ExtraFactoryMachine;
+import com.jerry.mekextras.common.content.blocktype.ExtraMachine.ExtraMachineBuilder;
 import com.jerry.mekextras.common.tier.*;
 import com.jerry.mekextras.common.tile.*;
 import com.jerry.mekextras.common.tile.transmitter.ExtraTileEntityTransmitter;
@@ -23,6 +26,7 @@ import com.jerry.mekextras.common.tile.multiblock.TileEntityReinforcedInductionP
 import com.jerry.mekextras.common.tile.multiblock.ExtraTileEntityInductionCell;
 import com.jerry.mekextras.common.tile.multiblock.ExtraTileEntityInductionProvider;
 import com.jerry.mekextras.common.util.ExtraEnumUtils;
+import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
 import mekanism.api.Upgrade;
 import mekanism.api.text.ILangEntry;
 import mekanism.api.tier.ITier;
@@ -48,7 +52,7 @@ public class ExtraBlockTypes {
     private static final Table<ExtraFactoryTier, FactoryType, ExtraFactory<?>> FACTORIES = HashBasedTable.create();
 
     // Enrichment Chamber
-    public static final ExtraMachine.ExtraFactoryMachine<TileEntityEnrichmentChamber> ENRICHMENT_CHAMBER = ExtraMachine.ExtraMachineBuilder
+    public static final ExtraFactoryMachine<TileEntityEnrichmentChamber> ENRICHMENT_CHAMBER = ExtraMachineBuilder
             .createExtraFactoryMachine(() -> MekanismTileEntityTypes.ENRICHMENT_CHAMBER, MekanismLang.DESCRIPTION_ENRICHMENT_CHAMBER, FactoryType.ENRICHING)
             .withGui(() -> MekanismContainerTypes.ENRICHMENT_CHAMBER)
             .withSound(MekanismSounds.ENRICHMENT_CHAMBER)
@@ -57,7 +61,7 @@ public class ExtraBlockTypes {
             .withComputerSupport("enrichmentChamber")
             .build();
     // Crusher
-    public static final ExtraMachine.ExtraFactoryMachine<TileEntityCrusher> CRUSHER = ExtraMachine.ExtraMachineBuilder
+    public static final ExtraFactoryMachine<TileEntityCrusher> CRUSHER = ExtraMachineBuilder
             .createExtraFactoryMachine(() -> MekanismTileEntityTypes.CRUSHER, MekanismLang.DESCRIPTION_CRUSHER, FactoryType.CRUSHING)
             .withGui(() -> MekanismContainerTypes.CRUSHER)
             .withSound(MekanismSounds.CRUSHER)
@@ -66,7 +70,7 @@ public class ExtraBlockTypes {
             .withComputerSupport("crusher")
             .build();
     // Energized Smelter
-    public static final ExtraMachine.ExtraFactoryMachine<TileEntityEnergizedSmelter> ENERGIZED_SMELTER = ExtraMachine.ExtraMachineBuilder
+    public static final ExtraFactoryMachine<TileEntityEnergizedSmelter> ENERGIZED_SMELTER = ExtraMachineBuilder
             .createExtraFactoryMachine(() -> MekanismTileEntityTypes.ENERGIZED_SMELTER, MekanismLang.DESCRIPTION_ENERGIZED_SMELTER, FactoryType.SMELTING)
             .withGui(() -> MekanismContainerTypes.ENERGIZED_SMELTER)
             .withSound(MekanismSounds.ENERGIZED_SMELTER)
@@ -75,7 +79,7 @@ public class ExtraBlockTypes {
             .withComputerSupport("energizedSmelter")
             .build();
     // Precision Sawmill
-    public static final ExtraMachine.ExtraFactoryMachine<TileEntityPrecisionSawmill> PRECISION_SAWMILL = ExtraMachine.ExtraMachineBuilder
+    public static final ExtraFactoryMachine<TileEntityPrecisionSawmill> PRECISION_SAWMILL = ExtraMachineBuilder
             .createExtraFactoryMachine(() -> MekanismTileEntityTypes.PRECISION_SAWMILL, MekanismLang.DESCRIPTION_PRECISION_SAWMILL, FactoryType.SAWING)
             .withGui(() -> MekanismContainerTypes.PRECISION_SAWMILL)
             .withSound(MekanismSounds.PRECISION_SAWMILL)
@@ -84,7 +88,7 @@ public class ExtraBlockTypes {
             .withComputerSupport("precisionSawmill")
             .build();
     // Osmium Compressor
-    public static final ExtraMachine.ExtraFactoryMachine<TileEntityOsmiumCompressor> OSMIUM_COMPRESSOR = ExtraMachine.ExtraMachineBuilder
+    public static final ExtraFactoryMachine<TileEntityOsmiumCompressor> OSMIUM_COMPRESSOR = ExtraMachineBuilder
             .createExtraFactoryMachine(() -> MekanismTileEntityTypes.OSMIUM_COMPRESSOR, MekanismLang.DESCRIPTION_OSMIUM_COMPRESSOR, FactoryType.COMPRESSING)
             .withGui(() -> MekanismContainerTypes.OSMIUM_COMPRESSOR)
             .withSound(MekanismSounds.OSMIUM_COMPRESSOR)
@@ -93,7 +97,7 @@ public class ExtraBlockTypes {
             .withComputerSupport("osmiumCompressor")
             .build();
     // Combiner
-    public static final ExtraMachine.ExtraFactoryMachine<TileEntityCombiner> COMBINER = ExtraMachine.ExtraMachineBuilder
+    public static final ExtraFactoryMachine<TileEntityCombiner> COMBINER = ExtraMachineBuilder
             .createExtraFactoryMachine(() -> MekanismTileEntityTypes.COMBINER, MekanismLang.DESCRIPTION_COMBINER, FactoryType.COMBINING)
             .withGui(() -> MekanismContainerTypes.COMBINER)
             .withSound(MekanismSounds.COMBINER)
@@ -102,7 +106,7 @@ public class ExtraBlockTypes {
             .withComputerSupport("combiner")
             .build();
     // Metallurgic Infuser
-    public static final ExtraMachine.ExtraFactoryMachine<TileEntityMetallurgicInfuser> METALLURGIC_INFUSER = ExtraMachine.ExtraMachineBuilder
+    public static final ExtraFactoryMachine<TileEntityMetallurgicInfuser> METALLURGIC_INFUSER = ExtraMachineBuilder
             .createExtraFactoryMachine(() -> MekanismTileEntityTypes.METALLURGIC_INFUSER, MekanismLang.DESCRIPTION_METALLURGIC_INFUSER, FactoryType.INFUSING)
             .withGui(() -> MekanismContainerTypes.METALLURGIC_INFUSER)
             .withSound(MekanismSounds.METALLURGIC_INFUSER)
@@ -112,22 +116,22 @@ public class ExtraBlockTypes {
             .withComputerSupport("metallurgicInfuser")
             .build();
     // Purification Chamber
-    public static final ExtraMachine.ExtraFactoryMachine<TileEntityPurificationChamber> PURIFICATION_CHAMBER = ExtraMachine.ExtraMachineBuilder
+    public static final ExtraFactoryMachine<TileEntityPurificationChamber> PURIFICATION_CHAMBER = ExtraMachineBuilder
             .createExtraFactoryMachine(() -> MekanismTileEntityTypes.PURIFICATION_CHAMBER, MekanismLang.DESCRIPTION_PURIFICATION_CHAMBER, FactoryType.PURIFYING)
             .withGui(() -> MekanismContainerTypes.PURIFICATION_CHAMBER)
             .withSound(MekanismSounds.PURIFICATION_CHAMBER)
             .withEnergyConfig(MekanismConfig.usage.purificationChamber, MekanismConfig.storage.purificationChamber)
-            .with(ExtraAttributeUpgradeSupport.ADVANCED_ADVANCED_MACHINE_UPGRADES)
+            .with(ExtraAttributeUpgradeSupport.EXTRA_ADVANCED_MACHINE_UPGRADES)
             .with(AttributeSideConfig.ADVANCED_ELECTRIC_MACHINE)
             .withComputerSupport("purificationChamber")
             .build();
     // Chemical Injection Chamber
-    public static final ExtraMachine.ExtraFactoryMachine<TileEntityChemicalInjectionChamber> CHEMICAL_INJECTION_CHAMBER = ExtraMachine.ExtraMachineBuilder
+    public static final ExtraFactoryMachine<TileEntityChemicalInjectionChamber> CHEMICAL_INJECTION_CHAMBER = ExtraMachineBuilder
             .createExtraFactoryMachine(() -> MekanismTileEntityTypes.CHEMICAL_INJECTION_CHAMBER, MekanismLang.DESCRIPTION_CHEMICAL_INJECTION_CHAMBER, FactoryType.INJECTING)
             .withGui(() -> MekanismContainerTypes.CHEMICAL_INJECTION_CHAMBER)
             .withSound(MekanismSounds.CHEMICAL_INJECTION_CHAMBER)
             .withEnergyConfig(MekanismConfig.usage.chemicalInjectionChamber, MekanismConfig.storage.chemicalInjectionChamber)
-            .with(ExtraAttributeUpgradeSupport.ADVANCED_ADVANCED_MACHINE_UPGRADES)
+            .with(ExtraAttributeUpgradeSupport.EXTRA_ADVANCED_MACHINE_UPGRADES)
             .with(AttributeSideConfig.ADVANCED_ELECTRIC_MACHINE)
             .withComputerSupport("chemicalInjectionChamber")
             .build();
@@ -227,9 +231,14 @@ public class ExtraBlockTypes {
     public static final BlockTypeTile<ExtraTileEntityThermodynamicConductor> INFINITE_THERMODYNAMIC_CONDUCTOR = createConductor(ConductorTier.ULTIMATE, () -> ExtraTileEntityTypes.INFINITE_THERMODYNAMIC_CONDUCTOR);
 
     static {
-        for (ExtraFactoryTier tier : ExtraEnumUtils.ADVANCED_FACTORY_TIERS) {
+        for (ExtraFactoryTier tier : ExtraEnumUtils.EXTRA_FACTORY_TIERS) {
             for (FactoryType type : EnumUtils.FACTORY_TYPES) {
-                FACTORIES.put(tier, type, ExtraFactory.ExtraFactoryBuilder.createFactory(() -> ExtraTileEntityTypes.getAdvancedFactoryTile(tier, type), type, tier).build());
+                if (MekanismExtras.hooks.evolvedMekanism.isLoaded()) {
+                    if (type != EMFactoryType.ALLOYING) {
+                        FACTORIES.put(tier, type, ExtraFactoryBuilder.createFactory(() -> ExtraTileEntityTypes.getAdvancedFactoryTile(tier, type), type, tier).build());
+                    }
+                }
+                FACTORIES.put(tier, type, ExtraFactoryBuilder.createFactory(() -> ExtraTileEntityTypes.getAdvancedFactoryTile(tier, type), type, tier).build());
             }
         }
     }
@@ -278,7 +287,7 @@ public class ExtraBlockTypes {
                 .withCustomShape(BlockShapes.FLUID_TANK)
                 .with(new ExtraAttributeTier<>(tier), new ExtraAttributeUpgradeable(upgradeBlock))
                 .without(AttributeParticleFX.class, AttributeStateFacing.class, Attributes.AttributeRedstone.class, AttributeUpgradeSupport.class)
-                .withComputerSupport(tier.getAdvanceTier().getLowerName() +  "FluidTank")
+                .withComputerSupport(tier.getAdvanceTier().getLowerName() + "FluidTank")
                 .build();
     }
 
