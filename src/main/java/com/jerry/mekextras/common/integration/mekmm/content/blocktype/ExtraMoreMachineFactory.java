@@ -67,7 +67,7 @@ public class ExtraMoreMachineFactory<TILE extends TileEntityExtraMoreMachineFact
                 case PLANTING_STATION, REPLICATING -> AttributeSideConfig.ADVANCED_ELECTRIC_MACHINE;
             });
             // 如果有Bounding属性就添加，但或许会有更复杂的形状
-            if (type.getBaseMachine().has(AttributeHasBounding.class)) {
+            if (getBaseMachine(type).has(AttributeHasBounding.class)) {
                 builder.with(AttributeHasBounding.ABOVE_ONLY);
             }
             builder.replace(new AttributeParticleFX().addDense(ParticleTypes.SMOKE, 5, rand -> new Pos3D(
@@ -81,18 +81,22 @@ public class ExtraMoreMachineFactory<TILE extends TileEntityExtraMoreMachineFact
 
             ExtraMoreMachineFactoryBuilder<ExtraMoreMachineFactory<TILE>, TILE, ?> builder = new ExtraMoreMachineFactoryBuilder<>(new ExtraMoreMachineFactory<>(tileEntityRegistrar,
                     () -> ExtraMoreMachineContainerTypes.MORE_MACHINE_FACTORY,
-                    switch (type) {
-                        case RECYCLING -> ExtraMoreMachineBlockTypes.RECYCLER;
-                        case PLANTING_STATION -> ExtraMoreMachineBlockTypes.PLANTING_STATION;
-                        case CNC_STAMPING -> ExtraMoreMachineBlockTypes.CNC_STAMPER;
-                        case CNC_LATHING -> ExtraMoreMachineBlockTypes.CNC_LATHE;
-                        case CNC_ROLLING_MILL -> ExtraMoreMachineBlockTypes.CNC_ROLLING_MILL;
-                        case REPLICATING -> ExtraMoreMachineBlockTypes.REPLICATOR;
-                    },
+                    getBaseMachine(type),
                     tier)
             );
             builder.withComputerSupport(tier.getAdvanceTier().getLowerName() + type.getRegistryNameComponentCapitalized() + "Factory");
             return builder;
+        }
+
+        private static ExtraFactoryMachine<?> getBaseMachine(MoreMachineFactoryType type) {
+            return switch (type) {
+                case RECYCLING -> ExtraMoreMachineBlockTypes.RECYCLER;
+                case PLANTING_STATION -> ExtraMoreMachineBlockTypes.PLANTING_STATION;
+                case CNC_STAMPING -> ExtraMoreMachineBlockTypes.CNC_STAMPER;
+                case CNC_LATHING -> ExtraMoreMachineBlockTypes.CNC_LATHE;
+                case CNC_ROLLING_MILL -> ExtraMoreMachineBlockTypes.CNC_ROLLING_MILL;
+                case REPLICATING -> ExtraMoreMachineBlockTypes.REPLICATOR;
+            };
         }
     }
 }
